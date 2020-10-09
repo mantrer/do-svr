@@ -17,6 +17,13 @@ services:
       - /svr/traefik/conf/traefik.toml:/etc/traefik/traefik.toml
       - /etc/localtime:/etc/localtime:ro
       - /svr/traefik/conf/acme.json:/acme.json
+    labels:
+      # global redirect to https
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https" 
+      - "traefik.http.middlewares.http-catchall.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.http-catchall.redirectscheme.permanent=false"
     restart: always
 networks:
   default:
