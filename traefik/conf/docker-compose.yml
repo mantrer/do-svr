@@ -3,7 +3,7 @@ version: '3'
 services:
   traefik:
     # The official v2 Traefik docker image
-    image: traefik:v2.3
+    image: traefik:v2.3.2
     ports:
       # The HTTP port
       - "80:80"
@@ -20,10 +20,10 @@ services:
     labels:
       # global redirect to https
       - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-      - "traefik.http.routers.http-catchall.entrypoints=web"
-      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https" 
-      - "traefik.http.middlewares.http-catchall.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.http-catchall.redirectscheme.permanent=false"
+      #      - "traefik.http.routers.http-catchall.entrypoints=web"
+      # - "traefik.http.routers.http-catchall.middlewares=redirect-to-https" 
+      # - "traefik.http.middlewares.http-catchall.redirectscheme.scheme=https"
+      # - "traefik.http.middlewares.http-catchall.redirectscheme.permanent=false"
     restart: always
 networks:
   default:
