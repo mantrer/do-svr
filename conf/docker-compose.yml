@@ -14,9 +14,9 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
-      - /svr/traefik/conf/traefik.toml:/etc/traefik/traefik.toml
+      - /srv/traefik/conf/traefik.toml:/etc/traefik/traefik.toml
       - /etc/localtime:/etc/localtime:ro
-      - /svr/traefik/conf/acme.json:/acme.json
+      - /srv/traefik/conf/acme.json:/acme.json
     labels:
       # global redirect to https
       - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
